@@ -5,3 +5,6 @@
 
 # Directories
 .terraform/
+
+# SSH Keys
+*.pem

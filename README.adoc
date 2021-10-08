@@ -6,3 +6,4 @@
 * https://github.com/hashicorp/terraform-guides
 * https://www.terraform.io/docs/language/index.html
 * https://registry.terraform.io/providers/hashicorp/google/latest/docs
+* https://www.bitovi.com/blog/bitops-terraform-ansible

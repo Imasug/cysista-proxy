@@ -21,7 +21,3 @@ variable "machine_type" {
 variable "image" {
   default = "debian-cloud/debian-9"
 }
-
-variable "ssh_public_key" {
-  default = "~/.ssh/id_rsa.pub"
-}
