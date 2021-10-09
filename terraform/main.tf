@@ -49,6 +49,10 @@ resource "null_resource" "ansible" {
   ]
 
   provisioner "local-exec" {
-    command = "ansible-playbook -i inventory.yml ../ansible/playbook.yml"
+    command = <<EOF
+      ansible-galaxy role install -r ../ansible/requirements.yml -f
+      ansible-galaxy collection install -r ../ansible/requirements.yml -f
+      ansible-playbook -i inventory.yml ../ansible/playbook.yml
+    EOF
   }
 }

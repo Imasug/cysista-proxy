@@ -19,7 +19,7 @@ variable "machine_type" {
 }
 
 variable "image" {
-  default = "debian-cloud/debian-9"
+  default = "/projects/centos-cloud/global/images/centos-stream-8-v20210916"
 }
 
 variable "remote_user" {

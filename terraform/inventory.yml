@@ -1,7 +1,7 @@
 ---
 cysista-proxy:
   hosts:
-    35.230.96.147
+    104.198.99.58
   vars:
     ansible_ssh_user: cysista
     ansible_ssh_private_key_file: /mnt/c/Users/imana/Desktop/cysista-proxy/terraform/.ssh/cysista-proxy.pem

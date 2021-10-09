@@ -1,0 +1,45 @@
+---
+- name: Download frp
+  ansible.builtin.unarchive:
+    src: "https://github.com/fatedier/frp/releases/download/v{{ frp_version }}/frp_{{ frp_version }}_linux_amd64.tar.gz"
+    dest: /opt
+    remote_src: yes
+    extra_opts:
+      - --transform
+      - s,^[^/]+,frp,x
+- name: Update frps configs
+  ansible.builtin.blockinfile:
+    path: /opt/frp/frps.ini
+    block: |
+      authentication_method = token
+      token = {{ lookup("community.general.passwordstore", "{{ key_name }} create=true length=50") }}
+      vhost_http_port = 80
+      vhost_https_port = 443
+- name: Allow to use reserved ports
+  ansible.builtin.lineinfile:
+    path: /opt/frp/systemd/frps.service
+    regexp: "^User=.+$"
+    state: absent
+- name: Create frp directory
+  ansible.builtin.file:
+    path: /etc/frp
+    state: directory
+    mode: "0755"
+- name: Create symbolic links
+  ansible.builtin.file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+  with_items:
+    - { src: /opt/frp/frps, dest: /usr/bin/frps }
+    - {
+        src: /opt/frp/systemd/frps.service,
+        dest: /etc/systemd/system/frps.service,
+      }
+    - { src: /opt/frp/frps.ini, dest: /etc/frp/frps.ini }
+- name: Enable frps
+  ansible.builtin.systemd:
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+    name: frps

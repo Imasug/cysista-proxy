@@ -2,6 +2,12 @@
 
 == Introduction
 
+== Requirements
+* GCP
+* Ansible
+* Terraform
+* pass
+
 == Reference
 * https://github.com/hashicorp/terraform-guides
 * https://www.terraform.io/docs/language/index.html
@@ -9,3 +15,4 @@
 * https://www.bitovi.com/blog/bitops-terraform-ansible
 * https://cloud.google.com/community/tutorials/getting-started-on-gcp-with-terraform
 * https://learn.hashicorp.com/tutorials/terraform/dependencies#implicit-and-explicit-dependencies
+* https://www.passwordstore.org/

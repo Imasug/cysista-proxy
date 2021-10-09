@@ -1,7 +1,16 @@
 ---
 - hosts: cysista-proxy
+  become: true
   gather_facts: no
+  roles:
+    - role: frps
+      vars:
+        key_name: cysista-proxy/frps
   tasks:
-    - name: test
-      debug:
-        msg: test
+    - name: Disable SELinux
+      ansible.posix.selinux:
+        state: disabled
+      register: selinux
+    - name: Reboot
+      ansible.builtin.reboot:
+      when: selinux.reboot_required
