@@ -1,0 +1,7 @@
+---
+- hosts: cysista-proxy
+  gather_facts: no
+  tasks:
+    - name: test
+      debug:
+        msg: test

@@ -37,3 +37,18 @@ resource "google_compute_instance" "cysista_proxy" {
     ssh-keys = "${var.remote_user}:${tls_private_key.cysista_proxy.public_key_openssh}"
   }
 }
+
+resource "null_resource" "ansible" {
+  triggers = {
+    always_run = timestamp()
+  }
+
+  depends_on = [
+    local_file.inventory,
+    google_compute_instance.cysista_proxy
+  ]
+
+  provisioner "local-exec" {
+    command = "ansible-playbook -i inventory.yml ../ansible/playbook.yml"
+  }
+}

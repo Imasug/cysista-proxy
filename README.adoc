@@ -8,3 +8,4 @@
 * https://registry.terraform.io/providers/hashicorp/google/latest/docs
 * https://www.bitovi.com/blog/bitops-terraform-ansible
 * https://cloud.google.com/community/tutorials/getting-started-on-gcp-with-terraform
+* https://learn.hashicorp.com/tutorials/terraform/dependencies#implicit-and-explicit-dependencies
