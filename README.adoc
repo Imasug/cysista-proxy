@@ -8,6 +8,11 @@
 * Terraform
 * pass
 
+== Run
+```
+terraform -chdir=terraform apply -auto-approve
+```
+
 == Reference
 * https://github.com/hashicorp/terraform-guides
 * https://www.terraform.io/docs/language/index.html
