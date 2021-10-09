@@ -2,22 +2,54 @@
 
 == Introduction
 
+Cysista-Proxyはサイジスタ用プロキシサーバーを構築するプロジェクトである。 +
+本プロジェクトは「Infrastructure as Code」を実現しているため、コマンドを1回実行するだけでサーバーの構築が可能である。 +
+
+本コードにより構築されるサーバーはパブリックIPアドレスをもつFRPサーバーとして機能する。 +
+そのため、FRPクライアントを利用して本サーバーに接続できればどんな端末もインターネット上に公開することが可能である。 +
+詳細は https://github.com/fatedier/frp[FRP] 参照。
+
+IMPORTANT: 本サーバーを利用する場合は認証情報が必要となるため、システム管理者に問い合わせが必要である。
+
+== Use Case
+
+下記が本サーバーの主な利用例として考えられる。
+
+* ローカル端末のHTTP、HTTPSサーバーをインターネット上に公開したい。
+* インターネット経由でローカル端末にSSH接続できるようにしたい。
+* インターネット経由でローカル端末にリモートデスクトップ接続できるようにしたい。
+
 == Requirements
+
+本コードを実行するには下記を事前に準備する必要がある。
+
 * GCP
-* Ansible
-* Terraform
-* pass
+** Googleアカウント作成
+** GCPプロジェクト作成
+** 支払い設定
+** Compute Engine API有効化
+** 編集者ロールを持つサービスアカウントにて鍵ファイルを作成
+** VPCネットワークにてHTTP、HTTPS、FRPポートを許可するよう設定（対応するネットワークタグも作成）
+
+* https://docs.ansible.com/ansible/latest/index.html[Ansible]
+** インストール
+* https://www.terraform.io/docs/index.html[Terraform]
+** インストール
+* https://www.passwordstore.org/[pass]
+** インストール
+** GPG鍵を作成
+** `pass init <GPG鍵ID>` にて初期化
 
 == Run
+
+本プロジェクトのルートフォルダにて下記のコマンドを実行することでサーバーの構築ができる。
+
 ```
 terraform -chdir=terraform apply -auto-approve
 ```
 
 == Reference
+
 * https://github.com/hashicorp/terraform-guides
-* https://www.terraform.io/docs/language/index.html
-* https://registry.terraform.io/providers/hashicorp/google/latest/docs
 * https://www.bitovi.com/blog/bitops-terraform-ansible
 * https://cloud.google.com/community/tutorials/getting-started-on-gcp-with-terraform
-* https://learn.hashicorp.com/tutorials/terraform/dependencies#implicit-and-explicit-dependencies
-* https://www.passwordstore.org/
