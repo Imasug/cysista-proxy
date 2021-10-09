@@ -7,3 +7,4 @@
 * https://www.terraform.io/docs/language/index.html
 * https://registry.terraform.io/providers/hashicorp/google/latest/docs
 * https://www.bitovi.com/blog/bitops-terraform-ansible
+* https://cloud.google.com/community/tutorials/getting-started-on-gcp-with-terraform

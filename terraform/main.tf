@@ -1,12 +1,3 @@
-terraform {
-  required_providers {
-    google = {
-      source = "hashicorp/google"
-      version = "3.87.0"
-    }
-  }
-}
-
 provider "google" {
   credentials = file(var.gcp_credentials)
   project = var.gcp_project
@@ -43,6 +34,6 @@ resource "google_compute_instance" "cysista_proxy" {
   }
 
   metadata = {
-    ssh-keys = "cysista:${tls_private_key.cysista_proxy.public_key_openssh}"
+    ssh-keys = "${var.remote_user}:${tls_private_key.cysista_proxy.public_key_openssh}"
   }
 }

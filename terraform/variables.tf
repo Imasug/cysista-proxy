@@ -21,3 +21,7 @@ variable "machine_type" {
 variable "image" {
   default = "debian-cloud/debian-9"
 }
+
+variable "remote_user" {
+  default = "cysista"
+}
