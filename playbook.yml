@@ -1,5 +1,5 @@
 ---
-- hosts: cysista_proxy
+- hosts: all
   become: true
   gather_facts: no
   roles:

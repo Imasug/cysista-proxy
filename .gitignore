@@ -2,7 +2,6 @@
 *.tfstate
 *.tfstate.backup
 *.tfstate.lock.info
-inventory.yml
 
 # Directories
 .terraform/

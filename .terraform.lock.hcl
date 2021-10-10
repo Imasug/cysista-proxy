@@ -2,8 +2,7 @@
 # Manual edits may be lost in future updates.
 
 provider "registry.terraform.io/hashicorp/google" {
-  version     = "3.87.0"
-  constraints = "3.87.0"
+  version = "3.87.0"
   hashes = [
     "h1:RLPrX2KV7pJ55mATEoKbshMyrR4OmYAYtTc9/O2vLro=",
     "zh:08583ab738fdbd89daef6f5ca44ca20de8b5c3b8c02f9f441337e5d7ac9508dc",

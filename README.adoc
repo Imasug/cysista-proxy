@@ -45,7 +45,7 @@ IMPORTANT: 本サーバーを利用する場合は認証情報が必要となる
 本プロジェクトのルートフォルダにて下記のコマンドを実行することでサーバーの構築ができる。
 
 ```
-terraform -chdir=terraform apply -auto-approve
+terraform apply -auto-approve
 ```
 
 == Reference
