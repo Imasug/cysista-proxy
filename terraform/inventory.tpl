@@ -1,5 +1,5 @@
 ---
-cysista-proxy:
+cysista_proxy:
   hosts:
     ${ip}
   vars:
