@@ -1,0 +1,6 @@
+[common]
+bind_port = 7000
+authentication_method = token
+token = {{ lookup("community.general.passwordstore", "{{ key_name }} create=true length=50") }}
+vhost_http_port = 80
+vhost_https_port = 443

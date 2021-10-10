@@ -6,6 +6,7 @@
     - role: frps
       vars:
         key_name: cysista-proxy/frps
+        frps_ini_file: frps.ini.j2
   tasks:
     - name: Disable SELinux
       ansible.posix.selinux:
