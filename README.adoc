@@ -29,6 +29,7 @@ IMPORTANT: 本サーバーを利用する場合は認証情報が必要となる
 ** 支払い設定
 ** Compute Engine API有効化
 ** 編集者ロールを持つサービスアカウントにて鍵ファイルを作成
+** 環境変数GOOGLE_APPLICATION_CREDENTIALSに鍵ファイルのパスを設定
 ** VPCネットワークにてHTTP、HTTPS、FRPポートを許可するよう設定（対応するネットワークタグも作成）
 
 * https://docs.ansible.com/ansible/latest/index.html[Ansible]
@@ -45,7 +46,7 @@ IMPORTANT: 本サーバーを利用する場合は認証情報が必要となる
 本プロジェクトのルートフォルダにて下記のコマンドを実行することでサーバーの構築ができる。
 
 ```
-terraform apply -auto-approve
+terraform init && terraform apply -auto-approve
 ```
 
 == Reference

@@ -1,7 +1,3 @@
-variable "gcp_credentials" {
-  default = "/mnt/c/tmp/cysista-328317-c0f8847ea88b.json"
-}
-
 variable "gcp_project" {
   default = "cysista-328317"
 }
