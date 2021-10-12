@@ -56,7 +56,7 @@ resource "null_resource" "ansible" {
     command = <<EOF
       ansible-galaxy role install -r requirements.yml -f
       ansible-galaxy collection install -r requirements.yml -f
-      ansible-playbook -i ${google_compute_address.cysista_proxy.address}, -u ${var.remote_user} --key-file ${local_file.remote_ssh_private_key.filename} playbook.yml
+      ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ${google_compute_address.cysista_proxy.address}, -u ${var.remote_user} --key-file ${local_file.remote_ssh_private_key.filename} playbook.yml
     EOF
   }
 }
