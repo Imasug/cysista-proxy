@@ -43,6 +43,11 @@ resource "google_compute_instance" "cysista_proxy" {
   }
 }
 
+locals {
+  remote_host = google_compute_address.cysista_proxy.address
+  remote_key_file = local_file.remote_ssh_private_key.filename
+}
+
 resource "null_resource" "ansible" {
   triggers = {
     always_run = timestamp()
@@ -52,11 +57,23 @@ resource "null_resource" "ansible" {
     google_compute_instance.cysista_proxy
   ]
 
+  provisioner "remote-exec" {
+    connection {
+      type = "ssh"
+      host = local.remote_host
+      port = 22
+      user = var.remote_user
+      private_key = file(local.remote_key_file)
+    }
+
+    inline = ["echo 'connected!'"]
+  }
+
   provisioner "local-exec" {
     command = <<EOF
       ansible-galaxy role install -r requirements.yml -f
       ansible-galaxy collection install -r requirements.yml -f
-      ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ${google_compute_address.cysista_proxy.address}, -u ${var.remote_user} --key-file ${local_file.remote_ssh_private_key.filename} playbook.yml
+      ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ${local.remote_host}, -u ${var.remote_user} --key-file ${local.remote_key_file} playbook.yml
     EOF
   }
 }
